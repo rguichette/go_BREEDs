@@ -13,3 +13,17 @@
  
 
  {{end}}
+
+ {{define "js"}}
+ <script>
+    console.log("loaded!")
+        document.addEventListener("DOMContentLoaded", ()=>{
+
+            fetch("/api/dog-breeds") .then(r =>r.json()).then(r =>{
+                console.log(JSON.stringify(r))
+            })
+
+        })
+ </script>
+
+ {{end}}
