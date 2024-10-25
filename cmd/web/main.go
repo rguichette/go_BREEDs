@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"flag"
 	"fmt"
 	"go_breeders/models"
@@ -16,7 +15,6 @@ const port = ":4000"
 type application struct {
 	templateMap map[string]*template.Template
 	config      appConfig
-	DB          *sql.DB
 	Models      models.Models
 }
 
@@ -39,7 +37,6 @@ func main() {
 		log.Panic(err)
 	}
 
-	app.DB = db
 	app.Models = *models.New(db)
 
 	flag.Parse()
