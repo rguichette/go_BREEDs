@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go_breeders/models"
+	"go_breeders/config"
 
 	"os"
 	"testing"
@@ -12,7 +12,7 @@ var testApp application
 func TestMain(m *testing.M) {
 
 	testApp = application{
-		Models: *models.New(nil),
+		App: config.New(nil),
 	}
 
 	os.Exit(m.Run())
