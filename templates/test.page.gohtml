@@ -9,10 +9,10 @@
             <h3>Factory</h3>
             <div>
             <a href="javascript:void(0);" id="dog-factory-btn" class="btn btn-outline-secondary"> Get a dog from factory</a>
-            <a href="javascript:void(0);" id="cat-factory-btn" class="btn btn-outline-secondary"> Get a car from factory</a>
+            <a href="javascript:void(0);" id="cat-factory-btn" class="btn btn-outline-secondary"> Get a cat from factory</a>
             </div>
             <div class="mt-2" style="outline:1px solid silver; padding:2em; ">
-                <pre id="dog-factory-output"><span class="text-muted">Nothing received yet...</span></pre>>
+                <pre id="dog-factory-output"><span class="text-muted">Nothing received yet...</span></pre> 
             </div>
 
             <hr class="mt-4">
@@ -24,7 +24,18 @@
 
 
             <div class="mt-2" style="outline:1px solid silver; padding:2em; ">
-                <pre id="abstract-output"><span class="text-muted">Nothing received yet...</span></pre>>
+                <pre id="abstract-output"><span class="text-muted">Nothing received yet...</span></pre>
+            </div>
+
+
+
+  <h3>Builder</h3>
+            <div>
+            <a href="javascript:void(0);" id="dog-builder-btn" class="btn btn-outline-secondary"> Get a dog</a>
+            <a href="javascript:void(0);" id="cat-builder-btn" class="btn btn-outline-secondary"> Get a cat </a>
+            </div>
+            <div class="mt-2" style="outline:1px solid silver; padding:2em; ">
+                <pre id="dog-builder-output"><span class="text-muted">Nothing received yet...</span></pre>
             </div>
 
 
@@ -46,6 +57,11 @@ let catFactoryButton = document.getElementById("cat-factory-btn")
  let dogAbstractBtn = document.getElementById("dog-abstract-btn")
  let catAbstractBtn = document.getElementById("cat-abstract-btn")
  let abstractFactoryOutput = document.getElementById("abstract-output")
+
+ let dogBuilderBtn = document.getElementById("dog-builder-btn")
+ let catBuilderBtn = document.getElementById("cat-builder-btn")
+
+ let builderOutput = document.getElementById("dog-builder-output")
 
 
 
@@ -74,7 +90,7 @@ let catFactoryButton = document.getElementById("cat-factory-btn")
                 dogFactoryOutput.innerHTML = data.error; 
             }else {
                 dogFactoryOutput.innerHTML = JSON.stringify(data, undefined, 4)
-            }
+            } 
             
         })
     })
@@ -106,6 +122,38 @@ let catFactoryButton = document.getElementById("cat-factory-btn")
             
         })
     })
+
+    dogBuilderBtn.addEventListener("click", ()=>{
+    fetch("/api/dog-from-builder", {method:"get"})
+    .then( r =>r.json())
+    .then(data =>{
+    if(data.error){
+    builderOutput.innerHTML = data.error
+    }else {
+
+
+builderOutput.innerHTML = JSON.stringify(data, undefined, 4)
+    }
+    })
+    
+    })
+
+    catBuilderBtn.addEventListener("click", ()=>{
+    fetch("/api/cat-from-builder", {method:"get"})
+    .then( r =>r.json())
+    .then(data =>{
+    if(data.error){
+    builderOutput.innerHTML = data.error
+    }else {
+
+
+builderOutput.innerHTML = JSON.stringify(data, undefined, 4)
+    }
+    })
+    
+    })
+
+
  })
 
 
