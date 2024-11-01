@@ -30,7 +30,7 @@ func (m *mysqlRepo) AllDogBreeds() ([]*DogBreed, error) {
 		err := rows.Scan(
 			&b.ID,
 			&b.Breed,
-			&b.WeightHeighLbs,
+			&b.WeightHighLbs,
 			&b.WeightLowLbs,
 			&b.AverageWeight,
 			&b.Lifespan,
