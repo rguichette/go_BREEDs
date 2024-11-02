@@ -1,8 +1,8 @@
 package main
 
 import (
+	"go_breeders/adapters"
 	"go_breeders/config"
-	"go_breeders/models"
 
 	"os"
 	"testing"
@@ -11,26 +11,25 @@ import (
 var testApp application
 
 func TestMain(m *testing.M) {
-	TestBackend := &TestBackend{}
-	testAdapter := &RemoteService{
-		Remote: TestBackend,
+	testBackend := &adapters.TestBackend{}
+	testAdapter := &adapters.RemoteService{
+		Remote: testBackend,
 	}
 
 	testApp = application{
-		App:        config.New(nil),
-		catService: testAdapter,
+		App: config.New(nil, testAdapter),
 	}
 
 	os.Exit(m.Run())
 }
 
-type TestBackend struct{}
+// type TestBackend struct{}
 
-func (tb *TestBackend) GetAllCatBreeds() ([]*models.CatBreed, error) {
-	breeds := []*models.CatBreed{
-		&models.CatBreed{
-			ID: 1, Breed: "Tomcat", Details: "many details",
-		},
-	}
-	return breeds, nil
-}
+// func (tb *TestBackend) GetAllCatBreeds() ([]*models.CatBreed, error) {
+// 	breeds := []*models.CatBreed{
+// 		&models.CatBreed{
+// 			ID: 1, Breed: "Tomcat", Details: "many details",
+// 		},
+// 	}
+// 	return breeds, nil
+// }
